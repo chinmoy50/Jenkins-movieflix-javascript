@@ -1,0 +1,43 @@
+<project name="movieflix" default="build" basedir=".">
+    
+    <!-- Define global properties -->
+    <property name="node.dir" value="${basedir}/node" />
+    <property name="build.dir" value="dist" />
+    
+    <!-- Initialize Node.js environment -->
+    <target name="init">
+        <echo message="Setting up Node.js environment..." />
+    </target>
+
+    <!-- Install Node.js dependencies -->
+    <target name="install-dependencies" depends="init">
+        <echo message="Installing Node.js dependencies..." />
+        <exec executable="npm.cmd">
+            <arg value="install" />
+        </exec>
+    </target>
+
+    <!-- Run tests -->
+    <target name="test" depends="install-dependencies">
+        <echo message="Running tests..." />
+      <!--  <exec executable="npm.cmd">
+            <arg value="test" />
+        </exec> -->
+    </target>
+
+    <!-- Build the project -->
+    <target name="build" depends="test">
+        <echo message="Building the project..." />
+        <exec executable="npm.cmd">
+            <arg value="run" />
+            <arg value="build" />
+        </exec>
+    </target>
+
+    <!-- Clean build directory -->
+    <target name="clean">
+        <echo message="Cleaning build directory..." />
+        <delete dir="${build.dir}" />
+    </target>
+
+</project>
