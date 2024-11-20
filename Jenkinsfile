@@ -69,6 +69,9 @@ pipeline {
         }
 
         stage('Check SCA Result') {
+            script {
+            echo "Value of CAN_PROCEED_SCA: ${env.CAN_PROCEED_SCA}"
+        }
             when {
                 expression { return env.CAN_PROCEED_SCA != 'true' }
             }
