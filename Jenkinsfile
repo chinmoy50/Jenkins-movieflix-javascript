@@ -71,7 +71,7 @@ pipeline {
 
             when {
                 
-                expression { return env.CAN_PROCEED_SCA != 'true' }
+                expression { env.CAN_PROCEED_SCA == null || env.CAN_PROCEED_SCA.toString() != 'true' }
             }
             steps {
                 error "SCA scan failed. Deployment cancelled."
